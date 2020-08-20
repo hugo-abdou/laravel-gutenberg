@@ -45,7 +45,8 @@ class PostController extends Controller
         $post = Post::updateOrCreate(['id' => $request->id],
         [
             'title' => $request->title,
-            'full_text' => $request->full_text
+            'full_text' => $request->full_text,
+            'lb_content' => $request->content
         ]);
 
         return redirect()

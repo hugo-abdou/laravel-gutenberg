@@ -26,7 +26,8 @@
             <label for="full_text">Text</label>
             <textarea class="form-control {{ $errors->has('full_text') ? ' is-invalid' : '' }}"
                       name="full_text"
-                      id="full_text" rows="3">{{ Route::currentRouteNamed('posts.edit') 
+                      placeholder="Write post"
+                      id="full_text" hidden>{{ Route::currentRouteNamed('posts.edit') 
                                             ? $post->full_text : old('full_text') }}</textarea>
              @include('errors.error', ['input' => 'full_text'])
         </div>
@@ -36,3 +37,16 @@
       </form>
     </div>
 </div>
+
+@push('css')
+    <link rel="stylesheet" href="{{ asset('vendor/laraberg/css/laraberg.css') }}">
+@endpush
+
+@push('scripts')
+    <script src="https://unpkg.com/react@16.8.6/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16.8.6/umd/react-dom.production.min.js"></script>
+    <script src="{{ asset('vendor/laraberg/js/laraberg.js') }}"></script>
+    <script>
+    Laraberg.init('full_text', { laravelFilemanager: true })
+    </script>
+@endpush
